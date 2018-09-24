@@ -20,7 +20,7 @@ RUN pip install apache-airflow apache-airflow[hive] hmsclient
 
 RUN git clone https://github.com/mapr-demos/mapr-airflow.git && cd mapr-airflow
 
-RUN cd ./spark-statistics-job && mvn clean package
+RUN cd ./spark-statistics-job && mvn clean package && cd ..
 
 # Workaround for 'hive_hooks' beeline issue
 RUN sed -i -e "s/{hql}/{hql}\\\n/g" /usr/lib/python2.7/site-packages/airflow/hooks/hive_hooks.py
