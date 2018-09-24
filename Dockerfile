@@ -1,9 +1,19 @@
 FROM maprtech/pacc:6.0.1_5.0.0_centos7
 
+
+ENV JAVA_VERSION_MAJOR=8 \
+    JAVA_VERSION_MINOR=0 \
+    JAVA_VERSION_BUILD=141 \
+    GRADLE_VERSION_MAJOR=4 \
+    GRADLE_VERSION_MINOR=10 \
+    SBT_VERSION_MAJOR=1 \
+    SBT_VERSION_MINOR=2 \
+    SBT_VERSION_MINOR_MINOR=2
+
 ENV SLUGIFY_USES_TEXT_UNIDECODE=yes
 
 RUN yum upgrade python-setuptools
-RUN yum install -y python-pip git gcc gcc-c++ libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel cyrus-sasl-devel cyrus-sasl-gssapi cyrus-sasl-md5 cyrus-sasl-plain
+RUN yum install -y python-pip git java-1.${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR} maven gcc gcc-c++ libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel cyrus-sasl-devel cyrus-sasl-gssapi cyrus-sasl-md5 cyrus-sasl-plain
 
 RUN yum install -y mapr-spark
 
