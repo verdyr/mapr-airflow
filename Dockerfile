@@ -18,6 +18,8 @@ RUN rpm -Uvh --nodeps mapr-drill-1.13.0.201803281600-1.noarch.rpm
 RUN pip install --upgrade setuptools pip
 RUN pip install apache-airflow apache-airflow[hive] hmsclient
 
+RUN cd ./spark-statistics-job && mvn clean package
+
 # Workaround for 'hive_hooks' beeline issue
 RUN sed -i -e "s/{hql}/{hql}\\\n/g" /usr/lib/python2.7/site-packages/airflow/hooks/hive_hooks.py
 
