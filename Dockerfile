@@ -37,9 +37,9 @@ RUN sed -i -e "s/{hql}/{hql}\\\n/g" /usr/lib/python2.7/site-packages/airflow/hoo
 # Create a directory for your MapR Application and copy the Application
 RUN mkdir -p /home/mapr/mapr-apps/mapr-airflow
 
-COPY ./bin /home/mapr/mapr-apps/mapr-airflow/bin
-COPY ./dags /home/mapr/mapr-apps/mapr-airflow/dags
-COPY ./spark-statistics-job/target/spark-statistics-job-1.0.0-SNAPSHOT.jar /home/mapr/mapr-apps/spark-statistics-job-1.0.0-SNAPSHOT.jar
+COPY /tmp/build-dir/mapr-airflow/bin /home/mapr/mapr-apps/mapr-airflow/bin
+COPY /tmp/build-dir/mapr-airflow/dags /home/mapr/mapr-apps/mapr-airflow/dags
+COPY /tmp/build-dir/mapr-airflow/spark-statistics-job/target/spark-statistics-job-1.0.0-SNAPSHOT.jar /home/mapr/mapr-apps/spark-statistics-job-1.0.0-SNAPSHOT.jar
 RUN chmod +x /home/mapr/mapr-apps/mapr-airflow/bin/run.sh
 
 CMD ["/home/mapr/mapr-apps/mapr-airflow/bin/run.sh"]
